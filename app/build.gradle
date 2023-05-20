@@ -34,7 +34,12 @@ android {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
+    buildFeatures{
+        viewBinding true
+    }
+
 }
+
 
 dependencies {
     def roomVersion = '2.5.1'
