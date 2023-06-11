@@ -2,7 +2,13 @@ package com.example.artbookadvanced.dependencyinjection
 
 import android.content.Context
 import androidx.room.Room
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.request.RequestOptions
+import com.example.artbookadvanced.R
 import com.example.artbookadvanced.api.RetrofitAPI
+import com.example.artbookadvanced.repo.ArtRepository
+import com.example.artbookadvanced.repo.ArtRepositoryInterface
 import com.example.artbookadvanced.roomdb.ArtDao
 import com.example.artbookadvanced.roomdb.ArtDatabase
 import com.example.artbookadvanced.util.Util.BASE_URL
@@ -45,4 +51,14 @@ object AppModule {
             .build()
             .create(RetrofitAPI::class.java)
     }
+    @Singleton
+    @Provides
+    fun injectNormalRepo(dao:ArtDao,api:RetrofitAPI)=ArtRepository(dao,api) as ArtRepositoryInterface
+
+    @Singleton
+    @Provides
+    fun injectGlide(@ApplicationContext context: Context):RequestManager=Glide.with(context)
+        .setDefaultRequestOptions(
+            RequestOptions().placeholder(R.drawable.ic_launcher_foreground).error(R.drawable.ic_launcher_foreground)
+        )
 }
