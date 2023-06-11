@@ -31,19 +31,19 @@ class ImageAdapter @Inject constructor(private val glide: RequestManager): Recyc
 
     private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)
 
-    private var images: List<String>
+     var images: List<String>
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 
     private var onItemClickListener:((String)->Unit)?=null
-    private fun setOnItemClickListener(listener:(String)->Unit){
+     fun setOnItemClickListener(listener:(String)->Unit){
         onItemClickListener=listener
     }
 
     override fun onBindViewHolder(holder: ImageHolder, position: Int) {
         val url =images[position]
         glide.load(url).into(holder.binding.singleArtImageView)
-        setOnItemClickListener {
+       holder.itemView.setOnClickListener {
             onItemClickListener?.let {
                 it(url)
             }

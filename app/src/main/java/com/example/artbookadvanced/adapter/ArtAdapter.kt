@@ -36,7 +36,7 @@ class ArtAdapter @Inject constructor(private val glide: RequestManager) :
 
     private val recyclerListDiffer = AsyncListDiffer(this, diffUtil)
 
-    private var artList: List<Art>
+     var artList: List<Art>
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 

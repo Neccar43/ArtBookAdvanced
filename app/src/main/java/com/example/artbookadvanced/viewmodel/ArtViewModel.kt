@@ -9,10 +9,11 @@ import com.example.artbookadvanced.repo.ArtRepository
 import com.example.artbookadvanced.repo.ArtRepositoryInterface
 import com.example.artbookadvanced.roomdb.Art
 import com.example.artbookadvanced.util.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
-
+@HiltViewModel
 class ArtViewModel @Inject constructor(
 private val repository: ArtRepositoryInterface
 ) : ViewModel() {
